@@ -96,7 +96,7 @@ namespace CoreEscuela
         {
             return GetObjetosEscuela(out conteoEvaluaciones, out conteoCursos, out conteoAsignaturas, out int dummy);
         }
-        // Método original para obtener objetos.
+        // Método original para obtener objetos. Este es un cambio del nuevo Branch de VersionPruebas
         public IReadOnlyList<ObjetoEscuelaBase> GetObjetosEscuela(
             out int conteoEvaluaciones,
             out int conteoCursos,
@@ -146,27 +146,7 @@ namespace CoreEscuela
             return listaObj;
         }
         #endregion
-        #region Primera versión GetObjetosEscuela. Tener en cuenta para estudiarlo.
-        // public List<ObjetoEscuelaBase> GetObjetosEscuela()
-        // {
-        //     var listaObj = new List<ObjetoEscuelaBase>();
-        //     listaObj.Add(Escuela);
-        //     listaObj.AddRange(Escuela.Cursos);
-
-        //     foreach (var curso in Escuela.Cursos)
-        //     {
-        //         listaObj.AddRange(curso.Asignaturas);
-        //         listaObj.AddRange(curso.Alumnos);
-
-        //         foreach (var alumno in curso.Alumnos)
-        //         {
-        //             listaObj.AddRange(alumno.Evaluaciones);
-        //         }
-        //     }
-
-        //     return listaObj;
-        // }
-        #endregion
+        
         #region Métodos de carga
 
         private void CargarAsignaturas()
