@@ -53,7 +53,7 @@ namespace CoreEscuela
             }
 
         }
-        #region Ejemplo de sobrecarga de un método.
+        #region Ejemplo de sobrecarga de un método. Prueba para GIT.
         public IReadOnlyList<ObjetoEscuelaBase> GetObjetosEscuela(
             bool traeEvaluaciones = true,
             bool traeAlumnos = true,
