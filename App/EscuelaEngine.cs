@@ -96,7 +96,7 @@ namespace CoreEscuela
         {
             return GetObjetosEscuela(out conteoEvaluaciones, out conteoCursos, out conteoAsignaturas, out int dummy);
         }
-
+        // Método original para obtener objetos.
         public IReadOnlyList<ObjetoEscuelaBase> GetObjetosEscuela(
             out int conteoEvaluaciones,
             out int conteoCursos,
@@ -105,7 +105,7 @@ namespace CoreEscuela
             bool traeEvaluaciones = true,
             bool traeAlumnos = true,
             bool traeAsignaturas = true,
-            bool traeCursos = true
+            bool traeCursos = true  
             )
         {
             conteoCursos = conteoEvaluaciones = conteoAsignaturas = conteoAlumnos = 0;
@@ -146,7 +146,7 @@ namespace CoreEscuela
             return listaObj;
         }
         #endregion
-        #region Primera versión GetObjetosEscuela
+        #region Primera versión GetObjetosEscuela. Tener en cuenta para estudiarlo.
         // public List<ObjetoEscuelaBase> GetObjetosEscuela()
         // {
         //     var listaObj = new List<ObjetoEscuelaBase>();
