@@ -96,7 +96,7 @@ namespace CoreEscuela
         {
             return GetObjetosEscuela(out conteoEvaluaciones, out conteoCursos, out conteoAsignaturas, out int dummy);
         }
-        // Método original para obtener objetos. Este es un cambio del nuevo Branch de VersionPruebas
+        // Método original para obtener objetos.
         public IReadOnlyList<ObjetoEscuelaBase> GetObjetosEscuela(
             out int conteoEvaluaciones,
             out int conteoCursos,
