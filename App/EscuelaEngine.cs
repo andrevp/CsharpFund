@@ -26,14 +26,33 @@ namespace CoreEscuela
 
         }
 
-        public Dictionary<string, IEnumerable<ObjetoEscuelaBase> > GetDiccionarioObjetos()
+        public Dictionary<LlaveDiccionario, IEnumerable<ObjetoEscuelaBase> > GetDiccionarioObjetos()
         {
-            var diccionario =  new Dictionary<string, IEnumerable<ObjetoEscuelaBase>>();
+            var diccionario =  new Dictionary<LlaveDiccionario, IEnumerable<ObjetoEscuelaBase>>();
 
-            diccionario.Add("Escuela", new [] {Escuela});
-            // diccionario.Add("Cursos",Escuela.Cursos); Así también funcionó
-            // Casteo
-            diccionario.Add("Cursos",Escuela.Cursos.Cast<ObjetoEscuelaBase>());
+            diccionario.Add(LlaveDiccionario.Escuela, new [] {Escuela});
+            // diccionario.Add("Cursos",Escuela.Cursos); Así también funcionó sin necesidad del casteo.
+            diccionario.Add(LlaveDiccionario.Curso,Escuela.Cursos.Cast<ObjetoEscuelaBase>());
+            
+
+            var listTmpEva = new List<Evaluación>();
+            var listTmpAl = new List<Alumno>();
+            var listTmpAsi = new List<Asignatura>();
+
+            foreach (var cur in Escuela.Cursos)
+            {
+                listTmpAsi.AddRange(cur.Asignaturas);
+                listTmpAl.AddRange(cur.Alumnos);
+                
+
+                foreach (var alu in cur.Alumnos)
+                {
+                    listTmpEva.AddRange(alu.Evaluaciones);
+                }
+            }
+            diccionario.Add(LlaveDiccionario.Asignatura,listTmpAsi);
+            diccionario.Add(LlaveDiccionario.Alumno,listTmpAl);
+            diccionario.Add(LlaveDiccionario.Evaluacion,listTmpEva);
             
             return diccionario;
 
