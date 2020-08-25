@@ -26,6 +26,17 @@ namespace CoreEscuela
 
         }
 
+        // public Dictionary<string, IEnumerable<ObjetoEscuelaBase> > GetDiccionarioObjetos()
+        // {
+        //     var diccionario =  new Dictionary<string, IEnumerable<ObjetoEscuelaBase>>();
+
+        //     diccionario.Add("Escuela", new [] {Escuela});
+        //     // diccionario.Add("Cursos",Escuela.Cursos); Así también funcionó
+        //     // Casteo
+        //     diccionario.Add("Cursos",Escuela.Cursos.Cast<ObjetoEscuelaBase>());
+
+        // }
+
         private void CargarEvaluaciones()
         {
 
@@ -53,7 +64,7 @@ namespace CoreEscuela
             }
 
         }
-        #region Ejemplo de sobrecarga de un método. Prueba para GIT.
+        #region Ejemplo de sobrecarga de un método.
         public IReadOnlyList<ObjetoEscuelaBase> GetObjetosEscuela(
             bool traeEvaluaciones = true,
             bool traeAlumnos = true,
@@ -143,7 +154,7 @@ namespace CoreEscuela
 
             }
 
-            return listaObj;
+            return listaObj.AsReadOnly();
         }
         #endregion
         
