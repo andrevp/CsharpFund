@@ -21,7 +21,8 @@ namespace CoreEscuela
                                                         out int conteoCursos,
                                                         out int conteoAsignaturas,
                                                         out int conteoAlumnos);
-            var dicc = engine.GetDiccionarioObjetos();                                                 
+            var dicc = engine.GetDiccionarioObjetos();  
+            engine.ImprimirDiccionario(dicc);                                              
             
             #region Comentado para estudio       
             // engine.Escuela.LimpiarLugar();

@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using CoreEscuela.Entidades;
+using CoreEscuela.Util;
 
 namespace CoreEscuela
 {
@@ -26,13 +27,24 @@ namespace CoreEscuela
 
         }
 
+        public void ImprimirDiccionario(Dictionary<LlaveDiccionario, IEnumerable<ObjetoEscuelaBase>> dic)
+        {
+            foreach (var obj in dic)
+            {
+                Printer.WriteTitle(obj.Key.ToString());
+                foreach (var val in obj.Value)
+                {
+                    Console.WriteLine(val);
+                }
+            }
+        }
         public Dictionary<LlaveDiccionario, IEnumerable<ObjetoEscuelaBase> > GetDiccionarioObjetos()
         {
             var diccionario =  new Dictionary<LlaveDiccionario, IEnumerable<ObjetoEscuelaBase>>();
 
             diccionario.Add(LlaveDiccionario.Escuela, new [] {Escuela});
             // diccionario.Add("Cursos",Escuela.Cursos); Así también funcionó sin necesidad del casteo.
-            diccionario.Add(LlaveDiccionario.Curso,Escuela.Cursos.Cast<ObjetoEscuelaBase>());
+            diccionario.Add(LlaveDiccionario.Curso, Escuela.Cursos.Cast<ObjetoEscuelaBase>());
             
 
             var listTmpEva = new List<Evaluación>();
