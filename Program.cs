@@ -22,7 +22,7 @@ namespace CoreEscuela
                                                         out int conteoAsignaturas,
                                                         out int conteoAlumnos);
             var dicc = engine.GetDiccionarioObjetos();  
-            engine.ImprimirDiccionario(dicc);                                              
+            engine.ImprimirDiccionario(dicc,true);                                              
             
             #region Comentado para estudio       
             // engine.Escuela.LimpiarLugar();

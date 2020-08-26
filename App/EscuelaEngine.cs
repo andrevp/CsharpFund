@@ -27,14 +27,43 @@ namespace CoreEscuela
 
         }
 
-        public void ImprimirDiccionario(Dictionary<LlaveDiccionario, IEnumerable<ObjetoEscuelaBase>> dic)
+        public void ImprimirDiccionario(Dictionary<LlaveDiccionario, IEnumerable<ObjetoEscuelaBase>> dic, 
+                        bool imprEval = false)
         {
-            foreach (var obj in dic)
+            foreach (var objdic in dic)
             {
-                Printer.WriteTitle(obj.Key.ToString());
-                foreach (var val in obj.Value)
-                {
-                    Console.WriteLine(val);
+                Printer.WriteTitle(objdic.Key.ToString());
+                foreach (var val in objdic.Value)
+                {   switch (objdic.Key)
+                    {
+                        case LlaveDiccionario.Evaluacion:
+                            if (imprEval)
+                            {
+                                Console.WriteLine(val);
+                            }
+                        break;
+
+                        case LlaveDiccionario.Escuela:
+                            Console.WriteLine("Escuela: " + val);
+                        break;
+
+                        case LlaveDiccionario.Alumno:
+                            Console.WriteLine("Alumno: " + val.Nombre);
+                        break;
+
+                        case LlaveDiccionario.Curso:
+                            var curtmp = val as Curso;
+                            if(curtmp != null)
+                            {
+                                int cantalum = curtmp.Alumnos.Count();
+                                Console.WriteLine("Curso: " + val.Nombre + " Cantidad de alumnos " + cantalum);
+                            }
+                        break;
+
+                        default:
+                            Console.WriteLine(val);
+                        break;    
+                    }
                 }
             }
         }
@@ -87,7 +116,8 @@ namespace CoreEscuela
                             {
                                 Asignatura = asignatura,
                                 Nombre = $"{asignatura.Nombre} Ev#{i + 1}",
-                                Nota = (float)(5 * rnd.NextDouble()),
+                                // Nota = (float)Math.Round((5 * rnd.NextDouble()), 2),
+                                Nota = MathF.Round((float)(5 * rnd.NextDouble()),2),
                                 Alumno = alumno
                             };
                             alumno.Evaluaciones.Add(ev);
