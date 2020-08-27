@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using CoreEscuela.App;
 using CoreEscuela.Entidades;
 using CoreEscuela.Util;
 using static System.Console;
@@ -10,7 +11,7 @@ namespace CoreEscuela
     class Program
     {
         static void Main(string[] args)
-        {
+        {   //AppDomain.CurrentDomain.ProcessExit += método que se va a ejecutar
             var engine = new EscuelaEngine();
             engine.Inicializar();
             Printer.WriteTitle("BIENVENIDOS A LA ESCUELA");
@@ -22,9 +23,13 @@ namespace CoreEscuela
                                                         out int conteoAsignaturas,
                                                         out int conteoAlumnos);
             var dicc = engine.GetDiccionarioObjetos();  
-            engine.ImprimirDiccionario(dicc,true);                                              
+            engine.ImprimirDiccionario(dicc,true);  
+            var reporteador = new Reporteador(engine.GetDiccionarioObjetos());
+            var evalList = reporteador.GetListaEvaluaciones();
+            var listAsig = reporteador.GetListaAsignaturas();
+            var listEvalxAsig = reporteador.GetDicEvaluacionAsignatura();
             
-            #region Comentado para estudio       
+            #region Comentado para estudio Linq      
             // engine.Escuela.LimpiarLugar();
             // var ListaILugar = from obj in listaObjetos
             //                   where obj is ILugar
