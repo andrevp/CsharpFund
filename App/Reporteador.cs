@@ -89,13 +89,18 @@ namespace CoreEscuela.App
 
             foreach (var AsiEval in DicEvaAsig)
             {
-                var dummy = from eval in AsiEval.Value
-                            group eval by eval.Alumno.UniqueId
+                var promsAlumn = from eval in AsiEval.Value
+                            group eval by new 
+                                {
+                                    eval.Alumno.UniqueId,
+                                    eval.Alumno.Nombre
+                                }
                             into grupoEvalAlumno
-                            select new 
+                            select new AlumnoPromedio
                             {
-                                AlumnoId = grupoEvalAlumno.Key,
-                                Promedio = grupoEvalAlumno.Average(evaluacion => evaluacion.Nota)
+                                alumnoid = grupoEvalAlumno.Key.UniqueId,
+                                alumnoNombre = grupoEvalAlumno.Key.Nombre,
+                                promedio = grupoEvalAlumno.Average(evaluacion => evaluacion.Nota)
                             };
             }
 
